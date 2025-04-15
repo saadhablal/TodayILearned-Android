@@ -1,0 +1,12 @@
+# Ignore Android/IntelliJ files
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+*.apk
+*.ap_
