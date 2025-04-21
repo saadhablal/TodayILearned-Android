@@ -1,8 +1,5 @@
 // Top-level build file
 buildscript {
-    ext {
-        compose_ui_version = '1.6.0'
-    }
     repositories {
         google()
         mavenCentral()

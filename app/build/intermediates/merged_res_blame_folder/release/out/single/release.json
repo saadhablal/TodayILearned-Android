@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.yourdomain.todayilearnedjournal.app-merged_res-59:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.yourdomain.todayilearnedjournal.app-main-60:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.yourdomain.todayilearnedjournal.app-merged_res-59:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.yourdomain.todayilearnedjournal.app-main-60:/mipmap-anydpi-v26/ic_launcher.xml"
+    }
+]
