@@ -42,46 +42,85 @@ fun MainScreen(viewModel: EntryViewModel) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Today I Learned Journal") }
+                title = {
+                    Text(
+                        "Today I Learned Journal",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                },
+                colors = androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.background
+                )
             )
-        }
+        },
+        containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
         Column(
             modifier = Modifier
                 .padding(padding)
-                .padding(16.dp)
+                .padding(24.dp)
                 .fillMaxSize()
         ) {
-            Text("Today's Entry (${today}):", style = MaterialTheme.typography.titleMedium)
-            Spacer(Modifier.height(8.dp))
+            Text(
+                "Today's Entry (${today}):",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.height(16.dp))
             OutlinedTextField(
                 value = entryText,
                 onValueChange = { entryText = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("What did you learn today?") }
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                placeholder = {
+                    Text(
+                        "What did you learn today?",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                },
+                textStyle = MaterialTheme.typography.bodyLarge
             )
-            Spacer(Modifier.height(8.dp))
-            Button(onClick = {
-                viewModel.saveEntry(Entry(today, entryText.text))
-                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show()
-            }) {
-                Text("Save Entry")
-            }
             Spacer(Modifier.height(16.dp))
-            Text("Previous Entries:", style = MaterialTheme.typography.titleMedium)
-            Spacer(Modifier.height(8.dp))
-            LazyColumn {
+            Button(
+                onClick = {
+                    viewModel.saveEntry(Entry(today, entryText.text))
+                    Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show()
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text("Save Entry", style = MaterialTheme.typography.titleMedium)
+            }
+            Spacer(Modifier.height(32.dp))
+            Text(
+                "Previous Entries:",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.height(12.dp))
+            LazyColumn(
+                modifier = Modifier.weight(1f)
+            ) {
                 items(entries.size) { idx ->
                     val entry = entries[idx]
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 4.dp)
+                            .padding(vertical = 6.dp),
+                        colors = androidx.compose.material3.CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surface
+                        )
                     ) {
-                        Column(Modifier.padding(8.dp)) {
-                            Text(entry.date, style = MaterialTheme.typography.labelMedium)
-                            Spacer(Modifier.height(4.dp))
-                            Text(entry.content)
+                        Column(Modifier.padding(16.dp)) {
+                            Text(
+                                entry.date,
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.secondary
+                            )
+                            Spacer(Modifier.height(6.dp))
+                            Text(entry.content, style = MaterialTheme.typography.bodyLarge)
                         }
                     }
                 }
